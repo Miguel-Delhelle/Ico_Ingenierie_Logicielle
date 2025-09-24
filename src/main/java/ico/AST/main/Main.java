@@ -12,6 +12,7 @@ import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
+import org.eclipse.jdt.core.dom.MethodInvocation;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
 public class Main {
@@ -23,25 +24,35 @@ public class Main {
         ASTParser parser = ASTParser.newParser(AST.JLS21);
         
         for (String sourceCode : allSourceCode) {
+        	
 	        parser.setSource(sourceCode.toCharArray());
 	        parser.setKind(ASTParser.K_COMPILATION_UNIT);
+	        
 	        final CompilationUnit cu = (CompilationUnit) parser.createAST(null);
 	        cu.accept(new ASTVisitor() {
 	
 	            @Override
 	            public boolean visit(TypeDeclaration node) {
-	                String className = node.getName().getIdentifier();
+	                String className = node.getName().getFullyQualifiedName();
 	                System.out.println("Classe trouvée : " + className);
+	                System.out.println(node.getLength());
 	                return true;
 	            }
 	
 	            @Override
 	            public boolean visit(MethodDeclaration node) {
 	                String methodName = node.getName().getIdentifier();
-	                System.out.println("  Méthode trouvée : " + methodName);
-	                System.out.println("    Type de retour : " + node.getReturnType2());
-	                return false;
+	                System.out.println("----Méthode trouvée: " + methodName+" Retourne "+node.getReturnType2());
+	                //System.out.println("----Type de retour : " + node.getReturnType2());
+	                return true;
 	            }
+	            
+	            @Override
+	        	public boolean visit(MethodInvocation node) {
+	            	System.out.println("---------"+node.getName());
+	            	
+	        		return false;
+	        	}
 	        });
         }
     }
