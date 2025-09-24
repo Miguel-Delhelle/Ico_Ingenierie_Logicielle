@@ -1,7 +1,11 @@
 package ico.AST.main;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileSystemView;
 
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
@@ -13,9 +17,10 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 public class Main {
 
     public static void main(String[] args) throws IOException, URISyntaxException {
-        String[] allSourceCode = new PathToText("file:/home/e20240000337/git/hotel_rest_tp3").getAllJavaContent();
+    	
+        String[] allSourceCode = new PathToText(new RepositorySelector().getLePath()).getAllJavaContent();
 
-        ASTParser parser = ASTParser.newParser(AST.JLS21); // Nous spécifions la version de Java (ici, Java 21)
+        ASTParser parser = ASTParser.newParser(AST.JLS21);
         
         for (String sourceCode : allSourceCode) {
 	        parser.setSource(sourceCode.toCharArray());
