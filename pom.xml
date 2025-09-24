@@ -7,21 +7,21 @@
   <description></description>
   <dependencies>
     <dependency>
-        <groupId>org.eclipse.tycho</groupId>
+        <groupId>org.eclipse.jdt</groupId>
         <artifactId>org.eclipse.jdt.core</artifactId>
-        <version>3.9.1.v20130905-0837</version>
+        <version>3.43.0</version>
     </dependency>
     <dependency>
-        <groupId>org.eclipse.core</groupId>
-        <artifactId>runtime</artifactId>
-        <version>3.9.100-v20131218-1515</version>
+        <groupId>org.eclipse.platform</groupId>
+        <artifactId>org.eclipse.core.runtime</artifactId>
+        <version>3.33.100</version>
     </dependency>
     <dependency>
-        <groupId>org.eclipse.birt.runtime</groupId>
+        <groupId>org.eclipse.platform</groupId>
         <artifactId>org.eclipse.core.resources</artifactId>
-        <version>3.8.101.v20130717-0806</version>
+        <version>3.21.0</version>
     </dependency>
-</dependencies>
+	</dependencies>
   
 </project>
 	
