@@ -29,6 +29,7 @@ public class Main {
 	        parser.setKind(ASTParser.K_COMPILATION_UNIT);
 	        
 	        final CompilationUnit cu = (CompilationUnit) parser.createAST(null);
+	        System.out.println(cu.getCommentList());
 	        cu.accept(new ASTVisitor() {
 	
 	            @Override

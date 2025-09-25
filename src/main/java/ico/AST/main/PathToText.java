@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 public class PathToText {
 
 	private Path filePath;
+	private String[] allMyFileInTxt;
 	
 	public PathToText(String cheminSource) throws URISyntaxException{
 		URI cheminInUri = new URI(cheminSource);
@@ -35,9 +36,23 @@ public class PathToText {
 	                    })
 	                    .toArray(String[]::new);
 	        }
-		
+		this.allMyFileInTxt = allMyFilesInTxt;
 		return allMyFilesInTxt;
 		
 	}
+	
+	public char[] getAllMyFileInTxt(){
+		return StringToChar(this.allMyFileInTxt);
+	}
+	
+	public char[] StringToChar(String[] allTxt) {
+		String tmpString ="";
+		for (String sourceCode : allTxt) {
+			tmpString += sourceCode;
+		}
+		return tmpString.toCharArray();
+	}
+	
+	
 	
 }
